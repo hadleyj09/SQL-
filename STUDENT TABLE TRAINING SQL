@@ -1,0 +1,29 @@
+CREATE TABLE student(
+    student_id INT PRIMARY KEY Auto_increment,
+    name VARCHAR(20),
+    major VARCHAR(20) DEFAULT 'undecided'
+);
+
+
+DESCRIBE student
+
+INSERT INTO student(student_id, name) VALUES(1, 'John')
+INSERT INTO student VALUES(2, 'Kate', 'Data')
+INSERT INTO student VALUES(3, 'Ken', 'English')
+INSERT INTO student VALUES(4, 'Janet', 'Political Science')
+INSERT INTO student VALUES(5, 'Joel', 'Data Analytics')
+INSERT INTO student(student_id, name) VALUES(6, 'Jack')
+
+SELECT * FROM student
+
+SELECT *
+FROM student
+WHERE name IN ('Ken', 'Kate') or student_id < 2
+
+UPDATE student
+SET major = 'Biology'
+WHERE major = 'undecided'
+
+SELECT *
+FROM student
+ORDER BY name, student_id
