@@ -1,0 +1,68 @@
+--FIND ALL EMPLOYEES
+SELECT * FROM employee
+
+--FIND ALL CLIENTS
+SELECT * FROM client
+
+--FIND ALL EMPLOYEES ordered by SALARY
+SELECT * FROM employee
+ORDER BY salary
+
+--FIND ALL EMPLOYEES ordered by SEX then NAME
+SELECT * FROM employee
+ORDER BY sex, first_name, last_name
+
+--FIND FIRST 5 EMPLOYEES from the table employee
+SELECT * FROM employee
+LIMIT 5
+
+--FIND FIRST AND LAST NAMES OF ALL EMPLOYEES 
+SELECT first_name, last_name 
+FROM employee
+
+
+--FIND forenames and surnames OF ALL EMPLOYEES 
+SELECT first_name AS forename, last_name AS surname
+FROM employee
+
+
+--FIND out all the different branch_id's 
+SELECT DISTINCT branch_id
+FROM employee
+
+--FIND the number of employees 
+SELECT COUNT(emp_id)
+FROM employee
+
+--FIND the number of femlae employees born after 1970 
+SELECT COUNT(emp_id)
+FROM employee
+WHERE sex = 'F' AND birth_day > '1971-01-01'
+
+--FIND the average of employees salaries
+SELECT AVG(salary)
+FROM employee
+
+--FIND the average of male employee salaries 
+SELECT AVG(salary)
+FROM employee
+WHERE sex = 'M'
+
+--FIND the sum of all employees salaries
+SELECT SUM(salary)
+FROM employee
+
+--FIND out how many males and females there are
+SELECT COUNT(sex), sex
+FROM employee
+GROUP BY sex
+
+--FIND the total sales of each salesman
+SELECT SUM(total_sales), emp_id
+FROM works_with
+GROUP BY emp_id
+
+--FIND out how much each client spent at each branch
+SELECT SUM(total_sales), client_id
+FROM works_with
+GROUP BY client_id
