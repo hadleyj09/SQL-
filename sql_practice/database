@@ -1,0 +1,47 @@
+DROP DATABASE IF EXISTS sql_practice;
+CREATE DATABASE  sql_practice;
+USE sql_practice;
+
+DROP TABLE IF EXISTS customers;
+CREATE TABLE sql_practice.customers(
+customer_id INT(10) NOT NULL, 
+first_name VARCHAR(50) NULL, 
+last_name VARCHAR(59) NULL, 
+country VARCHAR(50) NULL, 
+score INT(32) NULL,
+PRIMARY KEY (customer_id));
+
+INSERT INTO sql_practice.customers VALUES (1, 'Maria', 'Cramer', 'Germany', 350);
+INSERT INTO sql_practice.customers VALUES (2, 'John', 'Steel', 'USA', 900);
+INSERT INTO sql_practice.customers VALUES (3, 'George', 'Pipps', 'UK', 750);
+INSERT INTO sql_practice.customers VALUES (4, 'Martin', 'Muller', 'Germany', 500);
+INSERT INTO sql_practice.customers VALUES (5, 'Peter', 'Franken', 'USA', NULL);
+
+
+DROP TABLE IF EXISTS sql_practice_orders;
+CREATE TABLE sql_practice.orders(
+	order_id INT(10) NOT NULL,
+    customer_id INT(10) NULL,
+    order_date DATE NULL,
+    quantity INT(32) NULL,
+    PRIMARY KEY (order_id));
+    
+    INSERT INTO sql_practice.orders VALUES(1001, 1, "2021-01-11", 250);
+    INSERT INTO sql_practice.orders VALUES(1002, 2, "2021-04-05", 1150);
+    INSERT INTO sql_practice.orders VALUES(1003, 3, "2021-06-18", 500);
+    INSERT INTO sql_practice.orders VALUES(1006, 6, "2021-08-31", 250);
+    
+    DROP TABLE IF EXISTS sql_practice.employees;
+    CREATE TABLE sql_practice.employees (
+		emp_id INT(10) NOT NULL,
+        first_name VARCHAR(50) NULL,
+        last_name VARCHAR(50) NULL,
+        emp_country VARCHAR (50) NULL,
+        salary INT (50) NULL,
+        PRIMARY KEY (emp_id));
+        
+    INSERT INTO sql_practice.employees VALUES (1, 'John', 'Steel', 'USA', 55000); 
+		INSERT INTO sql_practice.employees VALUES (2, 'Ann', 'Labrune', 'France', 75000);
+    INSERT INTO sql_practice.employees VALUES (3, 'Marie', 'Bertrand', 'Brazi', 75000);
+    INSERT INTO sql_practice.employees VALUES (4, 'Georg', 'Afonso', 'UK', 75000);
+    INSERT INTO sql_practice.employees VALUES (5, 'Marie', 'Steel', 'UK', 75000);
