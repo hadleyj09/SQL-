@@ -1,0 +1,55 @@
+USE sql_practice;
+
+/* Find the total number of customers per country */
+
+SELECT 
+    COUNT(customer_id) AS total_customers, country
+FROM
+    customers
+GROUP BY country;
+
+/* Find the number of customers per country and order the customers from lowest to highest */
+
+SELECT 
+    COUNT(customer_id) AS total_customers, country
+FROM
+    customers
+GROUP BY country
+ORDER BY total_customers;
+
+  /* Find the highest score per country */
+  
+SELECT 
+    MAX(score) AS max_customer_score, country
+FROM
+    customers
+GROUP BY country
+ORDER BY max_customer_score;
+
+/* Find the total number of customers per country, but only for countries with more
+than one customer */
+
+SELECT COUNT(customer_id) total_customers, country
+FROM customers
+GROUP BY country
+HAVING total_customers > 1
+ORDER BY total_customers;
+
+/* Find the total number of orders from customers, with a score higher than 500 */
+
+
+SELECT 
+    *
+FROM
+    orders
+WHERE
+    customer_id IN 
+    (SELECT 
+            customer_id
+        FROM
+            customers
+        WHERE
+            score > 500);
+
+
+
