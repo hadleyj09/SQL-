@@ -1,0 +1,31 @@
+/* Retrieve the first and last name of all customers as one string with a space between them */
+
+SELECT 
+CONCAT(first_name, '_', last_name) AS customer_name
+FROM customers;
+
+/* Retrieve the first names of all customers as UPPERCASE*/
+
+SELECT 
+UPPER(first_name) AS upper_first_name
+FROM customers;
+
+/* Remove whitespaces from the last names of the customers in the customers table */
+
+SELECT 
+TRIM(last_name) AS clean_last_name 
+FROM customers;
+
+/* Find out how many characters are in each last name of each cucstomer in the custimers table */
+
+SELECT
+last_name,  
+LENGTH(TRIM(last_name))
+FROM customers;
+
+/* Get the first 3 letters of each last name from each customer in the customers table */
+
+SELECT
+last_name,
+SUBSTRING(last_name, 2,3)
+FROM customers;
