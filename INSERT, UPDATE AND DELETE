@@ -1,0 +1,46 @@
+USE sql_practice;
+
+/* Get info about the customers table */
+
+
+DESCRIBE customers;
+
+/* Add Anna Nixon from the UK as a customer */
+
+
+INSERT INTO customers VALUES(
+6, 'Anna', 'Nixon', 'UK', NULL);
+
+SELECT * FROM customers;
+
+/* Add Max Lang to the customers table */
+
+
+INSERT INTO customers VALUES(
+7, 'Max', 'Lang', NULL, NULL);
+
+/* Max is from Germany. Add his country */
+
+
+UPDATE customers 
+SET country = 'Germany'
+WHERE customer_id = 7;
+
+/* Anna now has as score of 100, and she is from the USA. not the UK. Please update Anna's
+information */
+
+
+UPDATE customers 
+SET 
+    country = 'USA',
+    score = 100
+WHERE
+    customer_id = 6;
+    
+/* Delete Anna and Max as they are no longer customers */
+
+DELETE FROM customers
+WHERE customer_id IN (6,7);
+
+
+
