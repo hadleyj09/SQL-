@@ -1,0 +1,83 @@
+/*Select all columns from customers table in the customers database.*/
+SELECT * FROM customers;
+
+(These are the column names)
+
+/*Select columns from customers table in the customers database. LIMIT to 5*/
+SELECT * FROM customers LIMIT 5
+
+/*Select the companies and addresses of customer names that start with A*/
+SELECT contactname, companyname, country, address, city, postalcode
+FROM customers
+WHERE contactname LIKE 'A%'
+ORDER BY contactname
+LIMIT 5
+
+/*find out customers from Canada and USA, whose names end with 'r' and */
+SELECT contactname, country
+FROM customers
+WHERE contactname LIKE '%r' AND country = 'USA' OR country = 'Canada'
+ORDER BY contactname
+
+
+/*Select all columns from customers table, but limit to the first selection only*/
+SELECT *
+FROM customers
+LIMIT 1;
+
+/*Select all columns from orders table, but limit to the first selection only*/
+SELECT *
+FROM orders
+LIMIT 1;
+
+/*Find out which customers shipped items to Rio De Janeiro in 1998, and their order dates. We need the customers addresses, IDs, and phone numbers*/
+SELECT DISTINCT c.customerID, c.contactname, c.country, c.city, c.postalcode, c.phone, o.orderdate, o.shipcity
+FROM customers AS c
+JOIN orders AS o ON c.customerID = o.CustomerID
+WHERE o.shipcity = 'Rio de Janeiro' AND o.orderdate LIKE '%1998%'
+ORDER BY c.contactname
+
+**The PRIMARY KEY of the customers table is CustomerID. This column is also the FORIEGN KEY in the orders table.
+Now I can INNER JOIN the customers table and orders table on the column that connects them both: ‘CustomerID’**
+
+
+/*Use the Customers and the Orders table to create a list of all Countries and a count of how many orders came from each.*/
+
+SELECT  
+	c.country, COUNT(o.orderid)
+FROM 
+	customers AS c
+JOIN 
+	orders AS o ON c.customerid = o.customerid
+GROUP BY 
+	c.country
+ORDER BY 
+	c.country
+
+/*Find the number of orders each country made, and filter only for orders fulfilled by the shipper “Speedy Express”.*/
+
+SELECT  
+	c.country, COUNT(o.orderid) AS Speedy_Express_Shipments
+FROM 
+	customers AS c
+JOIN 
+	orders AS o ON c.customerid = o.customerid
+JOIN
+    shippers AS s ON o.shipvia = s.shipperid
+WHERE 
+    s.companyname = 'Speedy Express'
+GROUP BY 
+	c.country
+ORDER BY 
+	c.country, 
+
+
+
+
+
+
+
+
+
+
+
