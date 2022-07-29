@@ -1,0 +1,63 @@
+/*Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.*/
+
+SELECT DISTINCT CITY FROM STATION 
+WHERE CITY REGEXP '^[aeiou]'
+
+/*Query the list of CITY names ending with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.*/
+
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '[aeiou]$'
+
+/*Query the list of CITY names starting and ending with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.*/
+
+SELECT DISTINCT CITY 
+FROM STATION 
+WHERE CITY REGEXP '^[aeiou].*[aeiou]$'
+
+/*Query the list of CITY names not starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.*/
+
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '^[^aeiou]'
+
+/*Query the list of CITY names not ending with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.*/
+
+SELECT DISTINCT CITY FROM STATION 
+WHERE CITY REGEXP'[^aeiou]$'
+
+/*Query the list of CITY names not starting or ending with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.*/
+
+SELECT DISTINCT CITY FROM STATION 
+WHERE CITY REGEXP '^[^aeiou]|[^aeiou]$'
+
+/*Query the list of CITY names not starting and ending with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.*/
+
+SELECT DISTINCT CITY FROM STATION 
+WHERE CITY REGEXP '^[^aeiou].*[^aeiou]$'
+
+/*Query studnets names with marks greater than 75. Order by last 3 characters of studnet name. If students have same last 3 characters, order by ID*/
+
+SELECT name FROM STUDENTS
+WHERE MARKS > 75
+ORDER BY RIGHT(name,3), ID
+
+/*Print all employee names from Employee table*/
+
+SELECT name FROM Employee
+ORDER By name
+
+/*Select employee names who have a salary greater than $2000 and who've been hired for less than 10 months.*/
+
+SELECT name FROM Employee
+WHERE salary > 2000 AND months < 10
+
+
+
+
+
+
+SELECT 
+IF(GRADE >=8, NAME, NULL), GRADE, MARKS
+FROM STUDENTS, GRADES
+WHERE Marks between min_mark AND max_mark
+ORDER BY grade desc, name
+
