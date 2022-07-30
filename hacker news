@@ -1,0 +1,26 @@
+SELECT strftime('%H', timestamp) AS 'Hour', 
+ROUND(AVG(score)) AS 'Avg_score', 
+COUNT(*) AS 'Num of Stories'
+FROM hacker_news
+WHERE timestamp IS NOT NULL
+GROUP BY 1
+ORDER BY 1
+
+SELECT CASE
+   WHEN url LIKE '%github.com%' THEN 'GitHub'
+   WHEN url LIKE '%medium.com%' THEN 'Medium'
+   WHEN url LIKE '%nytimes.com%' THEN 'New York Times'
+   ELSE 'Other'
+  END AS 'Source'
+FROM hacker_news;
+
+SELECT timestamp,
+   strftime('%H', timestamp)
+FROM hacker_news
+GROUP BY 1
+LIMIT 20;
+
+SELECT title, score
+FROM hacker_news
+ORDER BY score DESC
+LIMIT 5;
