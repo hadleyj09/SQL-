@@ -1,0 +1,18 @@
+SELECT name,
+  CASE
+    WHEN genre = 'romance' THEN 'Chill'
+    WHEN genre = 'comedy' THEN 'Chill'
+    ELSE 'Intense'
+  END AS 'Mood'
+FROM movies
+
+SELECT name, 
+  CASE
+    WHEN review > 4.5 THEN 'Extraordinary'
+    WHEN review > 4 THEN 'Excellent'
+    WHEN review > 2 THEN 'Fair'
+    ELSE 'Poor'
+  END AS Review
+FROM nomnom
+
+
