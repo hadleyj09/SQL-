@@ -1,0 +1,58 @@
+/*Number of free Fake Apps*/
+
+SELECT COUNT(*)
+FROM fake_apps 
+WHERE price = 0.0;
+
+/*Number of downloads*/
+
+SElECT SUM(downloads)
+FROM fake_apps;
+
+/*Number of downloads MIN and MAX*/
+
+SELECT MIN(downloads)
+FROM fake_apps;
+
+SELECT MAX(downloads)
+FROM fake_apps;
+
+/*MAX price of all fake apps*/
+
+SELECT MAX(price)
+FROM fake_apps;
+
+/*AVG price and # of downlaods of all fake apps*/
+
+SELECT AVG(price)
+FROM fake_apps;
+
+SELECT AVG(downloads)
+FROM fake_apps;
+
+
+/*Count of each price*/
+
+SELECT price, COUNT(*)
+FROM fake_apps
+GROUP BY price;
+
+/*Count of each price, more tha 20000 downloads*/
+
+SELECT downloads, COUNT(*)
+FROM fake_apps
+WHERE downloads > 20000
+GROUP BY price;
+
+/*Get total number of downloads per category*/
+
+SELECT category, SUM(downloads)
+FROM fake_apps
+GROUP BY category
+
+
+
+
+
+
+
