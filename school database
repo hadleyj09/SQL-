@@ -1,0 +1,116 @@
+CREATE DATABASE school;
+USE school;
+
+CREATE TABLE students(
+student_id INT NOT NULL AUTO_INCREMENT,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL,
+major_title VARCHAR(100) NOT NULL REFERENCES majors(major_title),
+teacher_id INT NOT NULL REFERENCES teachers(teacher_id),
+PRIMARY KEY (student_id));
+
+INSERT INTO students (student_id, first_name, last_name, major_title, teacher_id) VALUES(
+101, "James", "Dunkey", "Bioligy", 2);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Jenny", "Montrey", "Physics", 1);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Drake", "Zipper", "Calculus", 3);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Paul", "McClarkley", "Data Analytics", 7);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Tony", "Hanker", "Data Analytics", 7);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Sarah", "Mooner", "Data Analytics", 7);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Ali", "Sooner", "Engineering", 8);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Rajesh", "Rumpti", "Engineering", 8);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Aliah", "Krumer", "Engineering", 8);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Josh", "Smitty", "Broadcasting", 4);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Tamarah", "Johnson", "Broadcasting", 4);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Ethan", "Mongal", "Film", 5);
+INSERT INTO students (first_name, last_name, major_title, teacher_id) VALUES(
+"Frank", "Chooshy", "Calculus", 3);
+
+
+CREATE TABLE teachers(
+teacher_id INT NOT NULL AUTO_INCREMENT,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL,
+major_id INT NOT NULL,
+FOREIGN KEY (major_id) REFERENCES majors(major_id),
+PRIMARY KEY (teacher_id)
+ );
+ 
+ 
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"John", "Smith", 1002);
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"Sally", "Grinner", 1001);
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"Phill", "Williams", 1003);
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"Stacey", "Krinckle", 1004);
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"Don", "Chimer", 1005); 
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"Randy", "Carsh", 1006);
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"Brandon", "Carter", 1007);
+ INSERT INTO teachers(first_name,last_name, major_id) VALUES(
+	"Timothy", "Lankster", 1008);
+    
+SELECT * FROM teachers;
+
+CREATE TABLE majors(
+major_id INT NOT NULL AUTO_INCREMENT,
+major_title VARCHAR(100) NOT NULL,
+PRIMARY KEY (major_id));
+
+INSERT INTO majors VALUES(
+1001, "Biology");
+INSERT INTO majors(major_title) VALUES(
+"Physics");
+INSERT INTO majors(major_title) VALUES(
+"Calculus");
+INSERT INTO majors(major_title) VALUES(
+"Broadcasting");
+INSERT INTO majors(major_title) VALUES(
+"Film");
+INSERT INTO majors(major_title) VALUES(
+"Business");
+INSERT INTO majors(major_title) VALUES(
+"Data Analytics");
+INSERT INTO majors(major_title) VALUES(
+"Engineering");
+
+#Select all data from the students table
+SELECT * FROM teachers;
+
+#Find out which teachers teach each student. Get the students' majors as well. (LEFT JOIN)
+SELECT CONCAT(s.first_name, " ", s.last_name), s.major_title, CONCAT(t.first_name, " ", t.last_name)
+FROM students s
+LEFT JOIN teachers t ON t.teacher_id = s.teacher_id
+ORDER BY s.first_name, s.last_name;
+
+#Find out how many teachers teach each major (INNER JOIN)
+SELECT m.major_title, COUNT(t.teacher_id)
+FROM majors m
+JOIN teachers t ON t.major_id = m.major_id
+GROUP BY m.major_title
+ORDER BY m.major_title;
+
+#Find out how many students are in each major (COUNT)
+SELECT m.major_title, COUNT(s.student_id)
+FROM majors m
+LEFT JOIN students s ON s.major_title = m.major_title
+GROUP BY m.major_title
+ORDER BY m.major_title;
+
+#Find all students who have an 'a' in their last name (LIKE)
+SELECT last_name FROM students 
+WHERE last_name LIKE '%a%';
