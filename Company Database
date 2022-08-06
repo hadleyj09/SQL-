@@ -1,0 +1,117 @@
+CREATE TABLE employees(
+	emp_id INT NOT NULL auto_increment,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    birthdate DATE NOT NULL,
+    sex VARCHAR(10) NOT NULL,
+    salary INT,
+    super_id INT,
+    branch_id int,
+    PRIMARY KEY (emp_id));
+
+
+SELECT *
+FROM employees;
+    
+INSERT INTO employees VALUES(
+100, "David", "Wallace", "1967-11-17", "M", 250000, NULL, NULL);
+INSERT INTO employees VALUES(
+101, "Jan", "Levinson", "1961-05-11", "F", 110000, NULL, NULL);
+INSERT INTO employees VALUES(
+102, "Micheal", "Scott", "1964-03-15", "M", 250000, NULL, NULL);
+INSERT INTO employees VALUES(
+103, "Angela", "Martin", "1971-06-25", "F", 63000, NULL, NULL); 
+INSERT INTO employees VALUES(
+104, "Kelly", "Kapoor", "1980-02-05", "F", 55000, NULL, NULL);
+INSERT INTO employees VALUES(
+105, "Stanley", "Hudson", "1958-02-19", "M", 69000, NULL, NULL);
+INSERT INTO employees VALUES(
+106, "Josh", "Porter", "1969-09-05", "M", 78000, NULL, NULL);
+INSERT INTO employees VALUES(
+107, "Andy", "Benard", "1973-07-22", "M", 65000, NULL, NULL);
+INSERT INTO employees VALUES(
+108, "Jim", "Halpert", "1978-10-01", "M", 71000, NULL, NULL);
+
+CREATE TABLE branch(
+	branch_id INT NOT NULL auto_increment,
+    branch_name VARCHAR(255) NOT NULL,
+    mgr_id INT(10) NOT NULL,
+    mgr_start_date DATE,
+    PRIMARY KEY(branch_id));
+
+INSERT INTO branch VALUES(
+1, "Corporate", 100, "2006-02-09");
+INSERT INTO branch VALUES(
+2, "Scranton", 102, "1991-04-06");
+INSERT INTO branch VALUES(
+3, "Stamford", 106, "1998-02-13");
+
+ALTER TABLE employees
+ADD FOREIGN KEY (branch_id) REFERENCES branch(branch_id);
+
+CREATE TABLE client(
+	client_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    client_name VARCHAR(255) NOT NULL,
+    branch_id INT NOT NULL,
+    FOREIGN KEY(branch_id) REFERENCES branch(branch_id));
+    
+INSERT INTO client VALUES(
+400, "Dunmore Highschool", 2);
+INSERT INTO client VALUES(
+401, "Lakawana Country", 2);
+INSERT INTO client VALUES(
+402, "FedEx", 3);
+INSERT INTO client VALUES(
+403, "John Daly Law, LCC", 3);
+INSERT INTO client VALUES(
+404, "Scranton Whitepages", 2);
+INSERT INTO client VALUES(
+405, "Times Newspaper", 3);
+INSERT INTO client VALUES(
+406, "FedEx", 2);
+    
+CREATE TABLE branch_supplier(
+	branch_id INT NOT NULL,
+    supplier_name VARCHAR(255) NOT NULL,
+    supplier_type VARCHAR(255) NOT NULL,
+    PRIMARY KEY(branch_id, supplier_name));
+
+INSERT INTO branch_supplier VALUES(
+2, "Hammer Mill", "Paper");
+INSERT INTO branch_supplier VALUES(
+2, "Uni-ball", "Writing Utencils");
+INSERT INTO branch_supplier VALUES(
+3, "Patriot Paper", "Paper");
+INSERT INTO branch_supplier VALUES(
+2, "J.T. Forms & Labels", "Custom Forms");
+INSERT INTO branch_supplier VALUES(
+3, "Uni-ball", "Writing Utencils");
+INSERT INTO branch_supplier VALUES(
+3, "Hammer Mill", "Paper");
+INSERT INTO branch_supplier VALUES(
+3, "Stamford Labels", "Custom Forms");
+    
+CREATE TABLE works_with(
+	emp_id INT NOT NULL,
+    client_id INT NOT NULL,
+    total_sales INT NOT NULL,
+    PRIMARY KEY (emp_id, client_id));
+    
+
+
+INSERT INTO works_with VALUES(105, 400, 55000);
+INSERT INTO works_with VALUES(102, 401, 267000);
+INSERT INTO works_with VALUES(108, 402, 22500);
+INSERT INTO works_with VALUES(107, 403, 5000);
+INSERT INTO works_with VALUES(108, 403, 12000);
+INSERT INTO works_with VALUES(107, 405, 26000);
+INSERT INTO works_with VALUES(102, 406, 15000);
+INSERT INTO works_with VALUES(105, 406, 130000);
+
+SELECT * FROM works_with;
+SELECT * FROM employees;
+SELECT * FROM client;
+SELECT * FROM branch;
+SELECT * FROM branch_supplier;
+    
+    
