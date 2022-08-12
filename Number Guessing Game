@@ -1,0 +1,45 @@
+import random
+
+max_of_range = input("Hello! Welcome to the NUMBER GUESSING CHALLENGE! Can you guess the number that gets generated? Let's see! To begin, please enter a number. This number will be the highest number within a range from 0 to the number you guess. Number: ")
+
+if max_of_range.isdigit():
+  max_of_range = int(max_of_range)
+  if max_of_range < 0:
+    print("Choose a number greater than 0.")
+    quit()
+else:
+  print("Choose a number next time.")
+  quit()
+
+random_number = random.randint(0, max_of_range)
+guesses = 0
+
+while True:
+  guesses += 1
+  guess = input("Guess what the random number is: ")
+  if guess.isdigit():
+    guess = int(guess)
+  else:
+    print("Choose a number next time.")
+    continue
+  
+  if guess == random_number:
+    print("Correct!")
+    break
+  else:
+    if guess > random_number:
+      print("Your guess was greater than the answer! Try again!")
+      continue
+    else:
+      guess < random_number
+      print("Your guess was smaller than the answer! Try again!")
+      continue
+
+print(f"You got the correct answer in {guesses} guesses.")
+if guesses == 1:
+  print("Lucky Duck!")
+elif guesses >= 2 and guesses <= 5:
+  print("Not Bad!")
+elif guesses >= 6:
+  print("That took awhile...")
+     
