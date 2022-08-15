@@ -1,0 +1,58 @@
+CREATE DATABASE clothes;
+USE clothes;
+
+CREATE TABLE shirts(
+shirt_id INT NOT NULL PRIMARY KEY, 
+article VARCHAR(50) NOT NULL, 
+color VARCHAR(50) NOT NULL,  
+shirt_size VARCHAR(50) NOT NULL, 
+last_worn INT NOT NULL);
+
+DROP TABLE shirts;
+
+SELECT * FROM shirts;
+
+INSERT INTO shirts(
+shirt_id, article, color, shirt_size, last_worn) VALUES(
+1, 't-shirt', 'white', 'S', 10);
+
+INSERT INTO shirts(
+shirt_id, article, color, shirt_size, last_worn) VALUES
+(2, 't-shirt', 'green', 'S', 200),
+(3, 'polo shirt', 'black', 'M', 10),
+(4, 'tank top', 'blue', 'S', 50),
+(5, 't-shirt', 'pink', 'S', 0),
+(6, 'polo shirt', 'red', 'M', 5),
+(7, 'tank top', 'white', 'S', 200),
+(8, 'tank top', 'blue', 'M', 15);
+
+#Add A New Shirt: Purple polo shirt, size M last worn 50 days ago
+INSERT INTO shirts (
+shirt_id, article, color, shirt_size, last_worn) VALUES
+(9, 'polo shirt', 'purple', 'M', 50);
+
+#SELECT all shirts, But Only Print Out Article and Color
+SELECT article, color FROM shirts;
+
+#Update the shirt last worn 15 days ago, Change last_worn to 0
+UPDATE shirts
+SET last_worn = 0
+WHERE shirt_id = 8;
+
+#SELECT all medium shirts, Print Out Everything But shirt_id
+SELECT article, color, shirt_size, last_worn
+FROM shirts
+WHERE shirt_size = 'M';
+
+#Update all polo shirts, Change their size to L
+UPDATE shirts 
+SET shirt_size = 'L';
+
+#Update all white shirts, Change size to 'XS' and color to 'off white'
+UPDATE shirts
+SET shirt_size = 'XS'
+WHERE color = 'white';
+
+#Delete all old shirts, Last worn 200 days ago
+DELETE FROM shirts
+WHERE last_worn = 200;
