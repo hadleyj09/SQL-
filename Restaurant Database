@@ -1,0 +1,61 @@
+CREATE DATABASE Menu;
+USE menu;
+
+CREATE TABLE indian_items(
+I_item_id INT NOT NULL PRIMARY KEY,
+chef_id INT NOT NULL,
+item_name VARCHAR(50) NOT NULL,
+num_of_calories INT NOT NULL);
+
+INSERT INTO indian_items VALUES(
+101, 1, 'samosa', 100);
+INSERT INTO indian_items VALUES(
+102, 3, 'veg curry', 175);
+INSERT INTO indian_items VALUES(
+103, 1, 'dal curry', 160);
+INSERT INTO indian_items VALUES(
+104, 1, 'butter chicken curry', 200);
+INSERT INTO indian_items VALUES(
+105, 3, 'plain naan', 100);
+INSERT INTO indian_items VALUES(
+106, 3, 'cheese naan', 134);
+INSERT INTO indian_items VALUES(
+107, 1, 'veg curry burger', 250);
+
+CREATE TABLE Japanese_items(
+J_item_id INT NOT NULL PRIMARY KEY,
+chef_id INT NOT NULL,
+item_name VARCHAR(50) NOT NULL,
+num_of_calories INT NOT NULL);
+
+INSERT INTO Japanese_items VALUES(
+01, 2, 'salmon sushi', 100);
+INSERT INTO indian_items VALUES(
+02, 2, 'tuna sushi', 100);
+INSERT INTO indian_items VALUES(
+03, 2, 'cali sushi roll', 200);
+INSERT INTO indian_items VALUES(
+04, 2, 'fish-egg sushi', 150);
+INSERT INTO indian_items VALUES(
+05, 4, 'okonomiyaki', 250);
+INSERT INTO indian_items VALUES(
+06, 4, 'fried octopus balls', 200);
+INSERT INTO indian_items VALUES(
+07, 4, 'ramen', 300);
+
+
+CREATE TABLE chefs(
+chef_id INT NOT NULL PRIMARY KEY,
+name VARCHAR(50) NOT NULL,
+country VARCHAR(50) NOT NULL,
+hire_date DATE,
+years_of_experience INT);
+
+INSERT INTO chefs VALUES(
+1, 'Rajesh', 'India', '2020-05-22', 15);
+INSERT INTO chefs VALUES(
+2, 'Kimiko', 'Japan', '2021-07-12', 9);
+INSERT INTO chefs VALUES(
+3, 'Muhammad', 'India', '2020-01-19', 11);
+INSERT INTO chefs VALUES(
+4, 'Minato', 'Japan', '2021-08-17', 13);
