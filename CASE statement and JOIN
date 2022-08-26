@@ -1,4 +1,21 @@
+/*Create a case statement that puts amounts into categories*/
 
+SELECT * FROM sales;
+
+SELECT SaleDate, amount,
+	CASE 
+		WHEN amount < 1000 THEN 'Less Than $1,000'
+		WHEN amount < 5000 THEN 'Less Than $5,000'
+		WHEN amount < 10000 THEN 'Less Than $10,000'
+		ELSE 'Greater Than $10,000'
+	END AS amount_category
+FROM sales
+WHERE YEAR(SaleDate) = 2021
+ORDER BY amount;
+			
+	
+
+__________________________________________________
 
 SELECT 
 	dm.emp_no,
