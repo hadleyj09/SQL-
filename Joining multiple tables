@@ -1,0 +1,18 @@
+/*Get the sales date, seller, products and team 
+where the amount sold was under 500 in 2021*/
+
+SELECT * FROM sales;
+SELECT * FROM geo;
+SELECT * FROM people;
+SELECT * FROM products;
+
+SELECT s.SaleDate, s.Amount, p.SalesPerson, pr.Product, p.Team
+FROM sales s 
+JOIN people p ON p.SPID = s.SPID
+JOIN products pr ON pr.PID = s.PID
+WHERE YEAR(s.SaleDate) = 2021 AND s.Amount < 500
+ORDER BY s.amount;
+
+
+
+	
